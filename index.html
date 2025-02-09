@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utility.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Spotify</title>
+</head>
+<body>
+    <div class="main_box b_bg">
+        <nav class="b_r">
+            <div class="logo pointer">
+                <img  src="logo.svg" alt="logo">
+            </div>
+            
+            <div class="together">
+                <div class="home_btn pointer">
+                    <a href="index.html"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+                  </svg>
+
+                </a>
+                </div>
+                
+                <div class="open_btn">
+                    <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" class="Svg-sc-ytk21e-0 bneLcE"><path d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"></path>
+                    </svg>
+                
+                </div>
+                <div class="search_input pointer">
+                    <input class="nav_input g_bg" type="text" placeholder="What do you want to play?">
+                
+                </div>
+            </div>
+            <div class="together_2">
+                <div class="install_now pointer">
+                    <img class="download" src="download.svg" alt="download_icon">
+                    install App
+                </div>
+                <div class="bell_icon pointer">
+                    <img src="bell.svg" alt="bell_icon">
+                </div>
+                <div class="user_icon g_bg pointer">
+                    <img src="user.svg" alt="user_icon">
+                </div>
+            </div>
+              
+        </nav>
+        <!--the left content will be in this container named left_box-->
+        <div class="content_container">
+
+            <div class="left_box g_bg b_r">
+                <div class="library">
+                    <div class="library_icon">
+                        <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" class="Svg-sc-ytk21e-0 bneLcE"><path d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"></path>
+                        </svg>
+                    </div>
+                    <div class="library_text">
+                        Your Library
+                    </div>
+                    <div class="close_btn">
+                        <img src="close-circle-svgrepo-com.svg" alt="close">
+                    </div>
+                </div>
+                
+                <div class="your_song_list">
+                    <ul>
+                    
+                    
+                        
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="right_box g_bg b_r">
+                <!--
+                <div class="song_folder_card">
+                    <div class="cover_folder_img">
+                        <img src="rock.jpg" alt="">
+                    </div>
+                    <div class="cover_name">
+                        this is the name of song
+                    </div>
+                    <div class="album_play">
+                        <img class="b_btn" src="play_btn.svg" alt="play">
+                    </div>
+                </div>
+                -->
+            </div>
+
+        <!--play bar container-->
+        
+    </div>
+    <div class="play_bar">
+        <div class="current_song_info">
+            song 
+        </div>
+
+        <div class="song_controls">
+            <div class="play_controls">
+                
+                
+                <div class="previous_btn c_btn">
+                    <img src="previous_btn.svg" alt="previous">
+                </div>
+                <div class="play_pause_btn">
+                    <div class="play_btn">
+                        <img class="b_btn" src="play_btn.svg" alt="play">
+                    </div>
+                    <div class="pause_btn">
+                        <img class="b_btn" src="pause_btn.svg" alt="pause">
+                    </div>
+                </div>
+                <div class="next_btn c_btn">
+                    <img src="next_btn.svg" alt="">
+                </div>
+                
+            </div>
+            
+
+        </div>
+
+        <div class="other_controls">
+            00:00 / 00:00
+        </div>
+    </div>
+    <div class="moving_bar">
+        <div class="circle">
+
+        </div>
+
+    </div>
+    
+</body>
+<script src="app.js"></script>
+</html>

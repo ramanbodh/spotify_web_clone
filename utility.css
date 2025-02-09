@@ -1,0 +1,27 @@
+.b_bg{
+    background-color: black;
+}
+.g_bg{
+    background-color: rgba(42, 41, 41, 0.46);
+}
+.b_r{
+    border-radius:10px; 
+}
+.pointer{
+    cursor:pointer;
+}
+.c_btn{
+    width:28px;
+    height:28px;
+    cursor: pointer;
+    display:flex;
+}
+.b_btn{
+    width:45px;
+    height:45px;
+}
+@media(max-width:600px){
+    .g_bg{
+        background-color: rgba(42, 41, 41, 1);
+    }
+}
