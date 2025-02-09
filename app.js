@@ -98,7 +98,6 @@ async function songlst(f){
     //view library in media@ for mobile and smaller screen//
     let open=document.querySelector(".open_btn")
     open.addEventListener("click",()=>{
-        console.log("clicked")
         if(getComputedStyle(document.querySelector(".left_box")).left === "0px"){
             document.querySelector(".left_box").style.left="-300px";
             
