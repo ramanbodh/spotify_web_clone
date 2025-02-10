@@ -1,20 +1,20 @@
-console.log("hello world")
 const music_action=document.querySelector(".play_pause_btn")
 const play_btn=document.querySelector(".play_btn")
 const pause_btn=document.querySelector(".pause_btn")
 const timeUPD=document.querySelector(".other_controls")
-const rightUl=document.querySelector(".right_box").getElementsByTagName("ul")[0];
 
 //getElementBYTagName() will return htmlelement in array form so 
 //directly accessiing them will cause an error so if their is 
-//only one element to access the use the indexing property of arrar
+//only one element to access then use the indexing property of arrar
 //like array[0] to get the first element
 const songList=document.querySelector(".your_song_list").getElementsByTagName("ul")[0]
-let songs=[]
+//Global variable declearation section
+let songs;
 let audio;
-let currentSongIndex=0;
+let currentSongIndex;
 play_btn.style.display = "flex"; // Initially show the play button
 pause_btn.style.display = "none";
+//Function to load the song list from the specified album folder (f).
 async function songlst(f){
     let a= await fetch(`http://127.0.0.1:5500/music/${f}`)
     let response=await a.text();
@@ -23,24 +23,22 @@ async function songlst(f){
     let as=div.getElementsByTagName("a");
     songs=[]
     currentSongIndex=0
-    songList.innerHTML='';
-    if(play_btn.style.display==="none"){
+    songList.innerHTML='';// Clear the song list before adding new songs.
+    if(play_btn.style.display==="none")// If a song was playing from a previous album, pause it and reset buttons.
+    {
         audio.pause()
         play_btn.style.display="flex"
         pause_btn.style.display="none"
     }
-    
-    
-    
+    // Filter out the links ending with .mp3 to get the songs in the album.
     for(let i=0;i<as.length;i++){
         if(as[i].href.endsWith(".mp3")){
             songs.push(as[i].href)
         }
     }
-    audio = new Audio(songs[0])
-    //temp-code is to check wather the the .mp3 file are properly stored in songs array
+    audio = new Audio(songs[0])// Initialize the audio player with the first song.
+    // Add each song to the UI with song details (name and artist).
     for(let i=0;i<songs.length;i++){
-        let songs_name=(songs[i])
         let songs_name1=(songs[i].split(`/${f}/`)[1].replaceAll("%20"," "))
         let songItem = `
                 <li>
@@ -63,13 +61,15 @@ async function songlst(f){
             songList.innerHTML += songItem;
     }
     document.querySelector(".current_song_info").innerHTML=audio.src.split(`/${f}/`)[1].replaceAll("%20"," ").split("-")[0]
-
+    // Add event listeners to each song item for playing/pausing.
     let lst=songList.getElementsByTagName("li")
     for(let i=0;i<lst.length;i++){
         let plyBtn=lst[i].querySelector(".play_btn")
         let pusBtn=lst[i].querySelector(".pause_btn")
         lst[i].addEventListener("click",()=>{
-            if(pusBtn.style.display==="none"){
+            // When a song is clicked, toggle play/pause and update the audio source.
+            if(pusBtn.style.display==="none")// Pause any currently playing song before playing the selected song.
+            {
                 for(let j=0;j<lst.length;j++){
                     let ply_Btn=lst[j].querySelector(".play_btn")
                     let pus_Btn=lst[j].querySelector(".pause_btn")
@@ -125,8 +125,6 @@ async function folderGet(){
     for(let i=0;i<as.length;i++){
         if(as[i].href.includes("music")){
             folders.push(as[i].href.split("music/")[1])
-            console.log(as[i].href.split("music/")[1])
-            
         }
     }
     let fd=document.querySelector(".right_box")
@@ -148,7 +146,7 @@ async function folderGet(){
         fd.innerHTML+=fdinnerText;  
     }
     let sCard=document.querySelectorAll(".song_folder_card");
-    songlst(folders[1]);
+    songlst(folders[1]);//it starts from 1 insated of 0 because the folders[0]if the empty folder as default
     for(let i=0;i<sCard.length;i++){
         sCard[i].addEventListener("click", () => songlst(folders[i + 1]));
 
@@ -180,8 +178,6 @@ function playMusic(i){
     let plyBtn=lst[i].querySelector(".play_btn")
     let pusBtn=lst[i].querySelector(".pause_btn")
     if(pause_btn.style.display==="none"){
-        console.log(pusBtn.style.display)
-        console.log("pause")
         audio.play();
         play_btn.style.display="none"
         pause_btn.style.display="flex" 
@@ -189,8 +185,6 @@ function playMusic(i){
         pusBtn.style.display="inline" 
 }
     else{ 
-        console.log(pusBtn.style.display)
-        console.log("play")
         audio.pause();
         play_btn.style.display="flex"
         pause_btn.style.display="none"
@@ -203,21 +197,20 @@ function playMusic(i){
         document.querySelector(".circle").style.left=`${(audio.currentTime/audio.duration)*100}%`;
       });
     document.querySelector(".current_song_info").innerHTML=audio.src.split("/music/")[1].replaceAll("%20"," ").split("-")[0]
-    console.log(currentSongIndex)
 
     audio.addEventListener('ended',()=>{
         let lst=songList.getElementsByTagName("li")
-        let ply_Btn=lst[currentSongIndex].querySelector(".play_btn")
-        let pus_Btn=lst[currentSongIndex].querySelector(".pause_btn")
-        play_btn.style.display="flex"
-        pause_btn.style.display="none"
-        ply_Btn.style.display="inline"
-        pus_Btn.style.display="none"
+        if(currentSongIndex<(lst.length-1)){
+            let ply_Btn=lst[currentSongIndex].querySelector(".play_btn")
+            let pus_Btn=lst[currentSongIndex].querySelector(".pause_btn")
+            play_btn.style.display="flex"
+            pause_btn.style.display="none"
+            ply_Btn.style.display="inline"
+            pus_Btn.style.display="none"
         
-        audio=new Audio(songs[++currentSongIndex])
-        playMusic(currentSongIndex)
-        
-        
+            audio=new Audio(songs[++currentSongIndex])
+            playMusic(currentSongIndex)
+        }  
     })
     
    
@@ -265,29 +258,3 @@ document.querySelector(".previous_btn").addEventListener("click",()=>{
         playMusic(currentSongIndex)
     }
 })
-
-
-
-/*this need to be fixed
-console.log("hello song ",songBtn);
-songBtn.forEach((li) =>{
-    let play_list=songBtn.querySelector(".play_pause_btn");
-    audio = new Audio(songs_name)
-    play_list.addEventListener("click",() => {
-    console.log(pause_btn.style.display)
-    if(pause_btn.style.display==="none"){
-        audio.play();
-        play_btn.style.display="none"
-        pause_btn.style.display="flex"    
-}
-    else{
-        audio.pause();
-        play_btn.style.display="flex"
-        pause_btn.style.display="none"
-
-    }
-   
-});
-    
-});
-*/
